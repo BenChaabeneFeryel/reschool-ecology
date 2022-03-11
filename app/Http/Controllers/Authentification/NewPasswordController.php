@@ -1,11 +1,11 @@
 <?php
-
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\Authentification;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Validation\ValidationException;
 
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;

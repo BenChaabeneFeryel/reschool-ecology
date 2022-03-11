@@ -1,10 +1,10 @@
 <?php
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\GestionCompte;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController as BaseController;
-use App\Http\Resources\Ouvrier as OuvrierResource;
+use App\Http\Resources\GestionCompte\Ouvrier as OuvrierResource;
 use App\Models\Ouvrier;
 
 class OuvrierController extends BaseController

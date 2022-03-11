@@ -1,14 +1,11 @@
 <?php
-namespace App\Http\Controllers\API;
-
+namespace App\Http\Controllers\API\GestionDechet;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Controllers\BaseController as BaseController;
 use App\Http\Resources\Dechet as DechetResource;
 use App\Models\Dechet;
-class DechetController extends BaseController
-{
-
+class DechetController extends BaseController{
     public function index()
     {
         $dechet = Dechet::all();

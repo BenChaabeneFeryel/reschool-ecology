@@ -1,10 +1,9 @@
 <?php
-
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\TransportDechet;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Controllers\BaseController as BaseController;
 use App\Http\Resources\Zone_depot as Zone_depotResource;
 use App\Models\Zone_depot;
 

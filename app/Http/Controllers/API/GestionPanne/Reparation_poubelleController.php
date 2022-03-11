@@ -1,9 +1,9 @@
 <?php
+namespace App\Http\Controllers\API\GestionPanne;
 
-namespace App\Http\Controllers\API;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Controllers\BaseController as BaseController;
 use App\Http\Resources\Reparation_poubelle as Reparation_poubelleResource;
 use App\Models\Reparation_poubelle;
 

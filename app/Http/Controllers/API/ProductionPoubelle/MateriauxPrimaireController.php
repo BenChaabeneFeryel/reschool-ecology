@@ -1,17 +1,17 @@
 <?php
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\ProductionPoubelle;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Controllers\BaseController as BaseController;
 use App\Http\Resources\MateriauxPrimaire as MateriauxPrimaireResource;
-use App\Models\MateriauxPrimaire;
+use App\Models\Materiau_primaire;
 
 class MateriauxPrimaireController extends BaseController
 {
     public function index()
     {
-        $materiauxPrimaire = MateriauxPrimaire::all();
+        $materiauxPrimaire = Materiau_primaire::all();
         return $this->handleResponse(MateriauxPrimaireResource::collection($materiauxPrimaire), 'Affichage des materiauxPrimaire');
     }
 
@@ -28,21 +28,21 @@ class MateriauxPrimaireController extends BaseController
         if($validator->fails()){
             return $this->handleError($validator->errors());
         }
-        $materiauxPrimaire = MateriauxPrimaire::create($input);
+        $materiauxPrimaire = Materiau_primaire::create($input);
         $materiauxPrimaire->save();
         return $this->handleResponse(new MateriauxPrimaireResource($materiauxPrimaire), 'materiau primaire crée!');
     }
 
     public function show($id)
     {
-        $materiauxPrimaire = MateriauxPrimaire::find($id);
+        $materiauxPrimaire = Materiau_primaire::find($id);
         if (is_null($materiauxPrimaire)) {
             return $this->handleError('materiau Primaire not found!');
         }
         return $this->handleResponse(new MateriauxPrimaireResource($materiauxPrimaire), 'materiau Primaire existe.');
     }
 
-    public function update(Request $request, MateriauxPrimaire $materiauxPrimaire)
+    public function update(Request $request, Materiau_primaire $materiauxPrimaire)
     {
         $input = $request->all();
 
@@ -69,7 +69,7 @@ class MateriauxPrimaireController extends BaseController
         return $this->handleResponse(new MateriauxPrimaireResource($materiauxPrimaire), ' materiau Primaire modifié!');
     }
 
-    public function destroy(MateriauxPrimaire $materiauxPrimaire)
+    public function destroy(Materiau_primaire $materiauxPrimaire)
     {
         $materiauxPrimaire->delete();
         return $this->handleResponse(new MateriauxPrimaireResource($materiauxPrimaire), ' materiau Primaire supprimé!');

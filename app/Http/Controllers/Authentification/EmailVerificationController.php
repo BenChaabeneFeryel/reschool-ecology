@@ -1,9 +1,8 @@
 <?php
-
-namespace App\Http\Controllers\API;
-
+namespace App\Http\Controllers\API\Authentification;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Controllers\BaseController as BaseController;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 

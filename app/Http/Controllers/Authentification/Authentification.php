@@ -1,14 +1,11 @@
 <?php
-
-namespace App\Http\Controllers\API;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+namespace App\Http\Controllers\API\Authentification;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\API\BaseController as BaseController;
+use Illuminate\Http\Request;
+use App\Http\Controllers\BaseController as BaseController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\User as UserResource;
-
 use App\Models\User;
-
 
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Events\PasswordReset;

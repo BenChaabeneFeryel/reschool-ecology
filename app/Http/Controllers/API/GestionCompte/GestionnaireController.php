@@ -1,22 +1,19 @@
 <?php
 namespace App\Http\Controllers\API\GestionCompte;
 use App\Http\Controllers\BaseController as BaseController;
-use App\Http\Resources\Gestionnaire as GestionnaireResource;
+use App\Http\Resources\GestionCompte\Gestionnaire as GestionnaireResource;
 use App\Models\Gestionnaire;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\GestionnaireRequest;
-
-class GestionnaireController extends BaseController
-{
- public function index()
-    {
+use App\Http\Requests\GestionCompte\GestionnaireRequest;
+class GestionnaireController extends BaseController{
+ public function index(){
         $gestionnaire = Gestionnaire::all();
         return $this->handleResponse(GestionnaireResource::collection($gestionnaire),'affichage des gestionnaire');
     }
     public function store(GestionnaireRequest $request){
         $input = $request->all();
         if ($image = $request->file('photo')) {
-            $destinationPath = 'gestionnaire/';
+            $destinationPath = 'storage/images/gestionnaire';
             $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
             $image->move($destinationPath, $profileImage);
             $input['photo'] = "$profileImage";
@@ -47,21 +44,18 @@ class GestionnaireController extends BaseController
         return $this->handleResponse(new GestionnaireResource($gestionnaire), 'gestionnaire modifié avec succes');
     }
 
-    public function destroy(Gestionnaire $gestionnaire)
-    {
+    public function destroy(Gestionnaire $gestionnaire){
         $gestionnaire->delete();
         return $this->handleResponse(new GestionnaireResource($gestionnaire), 'gestionnaire supprimé!');
     }
 
-    public function hdelete( $id)
-    {
+    public function hdelete( $id) {
         $gestionnaire = Gestionnaire::withTrashed()->where('id' ,  $id )->first();
         $gestionnaire->forceDelete();
         return $this->handleResponse(new GestionnaireResource($gestionnaire), 'gestionnaire supprimé  avec force!');
     }
 
-    public function restore( $id)
-    {
+    public function restore( $id) {
         $gestionnaire = Gestionnaire::withTrashed()->where('id' ,  $id )->first();
         $gestionnaire->restore();
         return $this->handleResponse(new GestionnaireResource($gestionnaire), 'gestionnaire supprimé avec retour!');

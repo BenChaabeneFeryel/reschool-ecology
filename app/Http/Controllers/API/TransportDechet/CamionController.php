@@ -1,7 +1,8 @@
 <?php
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\TransportDechet;
+
 use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Controllers\BaseController as BaseController;
 use App\Http\Resources\Camion as CamionResource;
 use App\Models\Camion;
 use Illuminate\Http\Request;

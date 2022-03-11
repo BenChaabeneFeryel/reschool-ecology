@@ -1,9 +1,9 @@
 <?php
+namespace App\Http\Controllers\API\GestionPoubelleEtablissements;
 
-namespace App\Http\Controllers\API;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Controllers\BaseController as BaseController;
 use App\Http\Resources\Bloc_poubelle as Bloc_poubelleResource;
 use App\Models\Bloc_poubelle;
 

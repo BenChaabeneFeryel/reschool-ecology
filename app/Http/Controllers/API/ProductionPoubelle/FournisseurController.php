@@ -1,9 +1,9 @@
 <?php
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\ProductionPoubelle;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use App\Http\Controllers\API\BaseController as BaseController;
+use App\Http\Controllers\BaseController as BaseController;
 use App\Http\Resources\Fournisseur as FournisseurResource;
 use App\Models\Fournisseur;
 

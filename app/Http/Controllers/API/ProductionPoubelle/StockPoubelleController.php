@@ -1,11 +1,12 @@
 <?php
+namespace App\Http\Controllers\API\ProductionPoubelle;
 
-namespace App\Http\Controllers;
-
-use App\Models\StockPoubelle;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Http\Controllers\BaseController as BaseController;
+use App\Models\Stock_poubelle;
 
-class StockPoubelleController extends Controller
+class StockPoubelleController extends BaseController
 {
 
     public function index()
@@ -18,17 +19,17 @@ class StockPoubelleController extends Controller
         //
     }
 
-    public function show(StockPoubelle $stockPoubelle)
+    public function show(Stock_poubelle $stockPoubelle)
     {
         //
     }
 
-    public function update(Request $request, StockPoubelle $stockPoubelle)
+    public function update(Request $request, Stock_poubelle $stockPoubelle)
     {
         //
     }
 
-    public function destroy(StockPoubelle $stockPoubelle)
+    public function destroy(Stock_poubelle $stockPoubelle)
     {
         //
     }
