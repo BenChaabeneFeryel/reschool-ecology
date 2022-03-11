@@ -16,10 +16,10 @@ class EtablissementFactory extends Factory{
             'adresse'=> $this->faker->address,
             'longitude'=> $this->faker->longitude($min = -180, $max = 180),
             'latitude'=> $this->faker->latitude($min = -90, $max = 90),
-            'quantite_dechets_plastique'=> $this->faker->randomFloat(3,0, 10000),
-            'quantite_dechets_composte'=> $this->faker->randomFloat(3,0, 10000),
-            'quantite_dechets_papier'=> $this->faker->randomFloat(3,0, 10000),
-            'quantite_dechets_canette'=> $this->faker->randomFloat(3,0, 10000),
+            'quantite_dechets_plastique'=> $this->faker->randomFloat(3,0, 1000),
+            'quantite_dechets_composte'=> $this->faker->randomFloat(3,0, 1000),
+            'quantite_dechets_papier'=> $this->faker->randomFloat(3,0, 1000),
+            'quantite_dechets_canette'=> $this->faker->randomFloat(3,0, 1000),
         ];
     }
 }

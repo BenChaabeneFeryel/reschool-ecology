@@ -1,36 +1,41 @@
 <?php
 namespace App\Http\Controllers\API\ProductionPoubelle;
-
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Http\Request;
 use App\Http\Controllers\BaseController as BaseController;
+use App\Http\Resources\ProductionPoubelle\Stock_poubelle as Stock_poubelleResource;
 use App\Models\Stock_poubelle;
+use App\Http\Requests\ProductionPoubelle\StockPoubelleRequest;
 
-class StockPoubelleController extends BaseController
-{
-
-    public function index()
-    {
-        //
+class StockPoubelleController extends BaseController{
+    public function index(){
+        $stock_poubelle = Stock_poubelle::all();
+        return $this->handleResponse(Stock_poubelleResource::collection($stock_poubelle), 'Affichage stock poubelle');
     }
-
-    public function store(Request $request)
-    {
-        //
+    public function store(StockPoubelleRequest $request){
+        $input = $request->all();
+        $stock_poubelle = Stock_poubelle::create($input);
+        return $this->handleResponse(new Stock_poubelleResource($stock_poubelle), 'stock poubelle crée!');
     }
-
-    public function show(Stock_poubelle $stockPoubelle)
-    {
-        //
+    public function show($id){
+        $stock_poubelle = Stock_poubelle::find($id);
+        if (is_null($stock_poubelle)) {
+            return $this->handleError('stock poubelle n\'existe pas!');
+        }else{
+            return $this->handleResponse(new Stock_poubelleResource($stock_poubelle), 'stock poubelle existe.');
+        }
     }
-
-    public function update(Request $request, Stock_poubelle $stockPoubelle)
-    {
-        //
+    public function update(StockPoubelleRequest $request, Stock_poubelle $stock_poubelle){
+        $input = $request->all();
+        $stock_poubelle->update($input);
+        return $this->handleResponse(new Stock_poubelleResource($stock_poubelle), 'stock poubelle modifié!');
     }
-
-    public function destroy(Stock_poubelle $stockPoubelle)
-    {
-        //
+    public function destroy($id){
+        $stock_poubelle =Stock_poubelle::find($id);
+        if (is_null($stock_poubelle)) {
+            return $this->handleError('stock poubelle n\'existe pas!');
+        }
+        else{
+            $stock_poubelle->delete();
+            return $this->handleResponse(new Stock_poubelleResource($stock_poubelle), 'stock poubelle supprimé!');
+        }
     }
 }

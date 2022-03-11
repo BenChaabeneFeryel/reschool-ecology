@@ -1,6 +1,4 @@
 <?php
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\API\GestionCompte\GestionnaireController;
@@ -8,7 +6,7 @@ use App\Http\Controllers\API\GestionCompte\Client_dechetController;
 use App\Http\Controllers\API\GestionCompte\OuvrierController;
 use App\Http\Controllers\API\GestionCompte\ResponsableEtablissementController;
 
-use App\Http\Controllers\API\GestionDechet\CommandeController;
+use App\Http\Controllers\API\GestionDechet\Commande_dechetController;
 use App\Http\Controllers\API\GestionDechet\DechetController;
 
 use App\Http\Controllers\API\GestionPanne\MecanicienController;
@@ -21,19 +19,25 @@ use App\Http\Controllers\API\GestionPoubelleEtablissements\EtablissementControll
 use App\Http\Controllers\API\GestionPoubelleEtablissements\Zone_travailController;
 use App\Http\Controllers\API\GestionPoubelleEtablissements\PoubelleController;
 
-
 use App\Http\Controllers\API\ProductionPoubelle\FournisseurController;
 use App\Http\Controllers\API\ProductionPoubelle\StockPoubelleController;
 use App\Http\Controllers\API\ProductionPoubelle\MateriauxPrimaireController;
 
+
+use App\Http\Controllers\API\TransportDechet\CamionController;
+use App\Http\Controllers\API\TransportDechet\DepotController;
+use App\Http\Controllers\API\TransportDechet\Zone_depotController;
+
+
+use App\Http\Controllers\API\Operation\ViderController;
+use App\Http\Controllers\API\Dashboard\CompteurController;
+
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();*/
-
-
  /** -------------------------------------------gestion Compte -----------------------------------------*/
             /**                 administrateurs                        */
         Route::apiResource('gestionnaire', GestionnaireController::class);
-        Route::delete('/gestionnaire/hard/{id}', [GestionnaireController::class, 'hdelete']);
+        Route::delete('/gestionnaire/hard-delete/{id}', [GestionnaireController::class, 'hdelete']);
         Route::get('/gestionnaire/restore/{id}', [GestionnaireController::class, 'restore']);
         Route::get('/gestionnaire/restoreall', [GestionnaireController::class, 'restoreAll']);
         Route::get('/gestionnaire/trash', [GestionnaireController::class, 'trashedAdmin']);
@@ -47,7 +51,7 @@ use App\Http\Controllers\API\ProductionPoubelle\MateriauxPrimaireController;
         Route::apiResource('responsable-etablissement', ResponsableEtablissementController::class);
  /** -------------------------------------------gestion Dechet -----------------------------------------*/
             /**                  commandes                     */
-        Route::apiResource('commandes', CommandeController::class);
+        Route::apiResource('commande-dechet', Commande_dechetController::class);
 
             /**                  dechets                       */
         Route::apiResource('dechets', DechetController::class);
@@ -100,5 +104,20 @@ use App\Http\Controllers\API\ProductionPoubelle\MateriauxPrimaireController;
         Route::apiResource('materiaux-primaires',MateriauxPrimaireController::class);
                /**                   Stock poubelle                  */
         Route::apiResource('stock-poubelle', StockPoubelleController::class);
+
+
+
+
+
+ /** -------------------------------------------Ouvrier -----------------------------------------*/
+
+
+        Route::get('/viderPoubelle/{ouvrier}/{poubelle}', [ViderController::class, 'ViderPoubelle']);
+
+        Route::get('/viderCamion/{depot}', [ViderController::class, 'ViderCamion']);
+
+
+/** -------------------------------------------Dashboard -----------------------------------------*/
+        Route::get('/dasboard', [CompteurController::class, 'dashbordValeur']);
 
 

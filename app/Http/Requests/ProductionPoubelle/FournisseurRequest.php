@@ -1,30 +1,44 @@
 <?php
 
 namespace App\Http\Requests\ProductionPoubelle;
-
 use Illuminate\Foundation\Http\FormRequest;
-
-class FournisseurRequest extends FormRequest
-{
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
+class FournisseurRequest extends FormRequest{
     public function authorize()
     {
-        return false;
+        return true;
     }
+    public function rules()  {
+        if ($this->isMethod('post')) {
+            return [
+                'id_bloc_poubelle' =>'required',
+                'nom' =>'required|string',
+                'qrcode'=>'required|string',
+                'capacite_poubelle'=> 'required|between:0,100000000',
+                'type'=>"required|Rule::in(['composte', 'plastique','papier','canette'])",
+                'Etat'=> 'required|between:0,100',
+                'temps_remplissage' => 'date_format:Y-m-d',
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            //
-        ];
+            ];
+        }else if($this->isMethod('PUT')){
+            return [
+            //     'id_bloc_poubelle' =>'required',
+            //     'nom' =>'required|string',
+            //     'qrcode'=>'required|string',
+            //     'capacite_poubelle'=> 'required|between:0,100000000',
+            //     'type'=>"required|Rule::in(['composte', 'plastique','papier','canette'])",
+            //     'Etat'=> 'required|between:0,100',
+            //     'temps_remplissage' => 'date_format:Y-m-d',
+         ];
+        }
+
+    }
+    public function failedValidation(Validator $validator){
+        throw new HttpResponseException(response()->json([
+                'success'   => false,
+                'message'   => 'Validation errors',
+                'data'      => $validator->errors()
+            ]));
     }
 }

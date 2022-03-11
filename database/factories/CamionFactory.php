@@ -11,12 +11,12 @@ class CamionFactory extends Factory{
             'heure_entree'=>$this->faker->dateTimeBetween('now', '+1 days')->format('Y.m.d H:i:s'),
             'longitude'=> $this->faker->longitude($min = -180, $max = 180),
             'latitude'=> $this->faker->latitude($min = -90, $max = 90),
-            'volume_maximale_poubelle'=> $this->faker->randomFloat(0,0,10000),
-            'volume_actuelle_plastique'=> $this->faker->randomFloat(3,0,9999),
-            'volume_actuelle_papier'=> $this->faker->randomFloat(3,0, 9999),
-            'volume_actuelle_composte'=> $this->faker->randomFloat(3,0, 9999),
-            'volume_actuelle_canette'=> $this->faker->randomFloat(3,0, 9999),
-            'volume_carburant_consomme'=> $this->faker->randomFloat(3,0, 9999),
+            'volume_maximale_poubelle'=> $this->faker->randomFloat(0,0,360),
+            'volume_actuelle_plastique'=> $this->faker->randomFloat(3,0,359),
+            'volume_actuelle_papier'=> $this->faker->randomFloat(3,0, 359),
+            'volume_actuelle_composte'=> $this->faker->randomFloat(3,0, 359),
+            'volume_actuelle_canette'=> $this->faker->randomFloat(3,0, 359),
+            'volume_carburant_consomme'=> $this->faker->randomFloat(3,0,100),
             'Kilometrage'=> $this->faker->randomFloat(3,0, 1000),
         ];
     }

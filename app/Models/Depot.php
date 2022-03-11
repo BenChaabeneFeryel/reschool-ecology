@@ -12,7 +12,6 @@ class Depot extends Model
 
     protected $fillable = [
         'id_zone_depot',
-        'id_dechet',
         'id_camion',
         'date_depot',
         'quantite_depose',
@@ -23,10 +22,7 @@ class Depot extends Model
     {
         return $this->belongsTo(Zone_depot::class);
     }
-    public function dechet()
-    {
-        return $this->belongsTo(Dechet::class);
-    }
+
     public function camion()
     {
         return $this->belongsTo(Camion::class);

@@ -9,7 +9,6 @@ class CreateDepotsTable extends Migration{
         Schema::create('depots', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_zone_depot')->constrained('zone_depots')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('id_dechet')->constrained('dechets')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_camion')->constrained('camions')->onDelete('cascade')->onUpdate('cascade');
             $table->dateTime('date_depot');
             $table->float('quantite_depose');
@@ -24,9 +23,7 @@ class CreateDepotsTable extends Migration{
         Schema::table("depots",function(Blueprint $table){
             $table->dropForeignKey("id_zone_depot");
         });
-        Schema::table("depots",function(Blueprint $table){
-            $table->dropForeignKey("id_dechet");
-        });
+
         Schema::table("depots",function(Blueprint $table){
             $table->dropForeignKey("id_camion");
         });

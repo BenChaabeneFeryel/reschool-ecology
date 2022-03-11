@@ -1,30 +1,33 @@
 <?php
 
 namespace App\Http\Requests\GestionPoubelleEtablissements;
-
 use Illuminate\Foundation\Http\FormRequest;
-
-class Bloc_poubelleRequest extends FormRequest
-{
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Contracts\Validation\Validator;
+class Bloc_poubelleRequest extends FormRequest{
     public function authorize()
     {
-        return false;
+        return true;
     }
+    public function rules()  {
+        if ($this->isMethod('post')) {
+            return [
+                'id_etablissement' => 'required',
+                'emplacement' =>'required|required',
+            ];
+        }else if($this->isMethod('PUT')){
+            return [
+            //     'id_etablissement' => 'required',
+            //     'emplacement' =>'required|required',
+            ];
+        }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
-    public function rules()
-    {
-        return [
-            //
-        ];
+    }
+    public function failedValidation(Validator $validator){
+        throw new HttpResponseException(response()->json([
+                'success'   => false,
+                'message'   => 'Validation errors',
+                'data'      => $validator->errors()
+            ]));
     }
 }

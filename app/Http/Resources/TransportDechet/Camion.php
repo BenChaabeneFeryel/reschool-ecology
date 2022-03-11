@@ -4,22 +4,15 @@ namespace App\Http\Resources\TransportDechet;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Camion extends JsonResource
-{
-    /**
-     * Transform the resource into an array.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
-     */
+class Camion extends JsonResource{
     public function toArray($request)
     {
-        //return parent::toArray($request);
-
         return [
             'id' => $this->id,
+
             'id_zone_travail' => $this->id_zone_travail,
             'matricule' => $this->matricule,
+            'qrcode' => $this->qrcode,
             'heure_sortie' => $this->heure_sortie,
             'heure_entree' => $this->heure_entree,
             'longitude' => $this->longitude,
@@ -31,6 +24,7 @@ class Camion extends JsonResource
             'volume_actuelle_canette' => $this->volume_actuelle_canette,
             'volume_carburant_consomme' => $this->volume_carburant_consomme,
             'Kilometrage' => $this->Kilometrage,
+
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
             'deleted_at' => $this->deleted_at,

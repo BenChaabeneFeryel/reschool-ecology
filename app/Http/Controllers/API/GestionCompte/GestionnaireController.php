@@ -6,7 +6,7 @@ use App\Models\Gestionnaire;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\GestionCompte\GestionnaireRequest;
 class GestionnaireController extends BaseController{
- public function index(){
+    public function index(){
         $gestionnaire = Gestionnaire::all();
         return $this->handleResponse(GestionnaireResource::collection($gestionnaire),'affichage des gestionnaire');
     }
@@ -23,14 +23,14 @@ class GestionnaireController extends BaseController{
         return $this->handleResponse(new GestionnaireResource($gestionnaire), 'gestionnaire crée!');
     }
     public function show($id) {
-        $gestionnaire = Gestionnaire::findOrFail($id);
+        $gestionnaire = Gestionnaire::find($id);
         if (is_null($gestionnaire)) {
-            return $this->handleError('Gestionnaire not found!');
+            return $this->handleError('Gestionnaire n\'existe pas!');
+        }else{
+            return $this->handleResponse(new GestionnaireResource($gestionnaire),'gestionnaire existante.');
         }
-        return $this->handleResponse(new GestionnaireResource($gestionnaire), 'gestionnaire existante.');
     }
-    public function update(GestionnaireRequest $request,Gestionnaire $gestionnaire)
-    {
+    public function update(GestionnaireRequest $request,Gestionnaire $gestionnaire){
         $input = $request->all();
         if ($image = $request->file('photo')) {
             $destinationPath = 'gestionnaire/';
@@ -40,14 +40,30 @@ class GestionnaireController extends BaseController{
         }else{
             unset($input['photo']);
         }
+
+        if(!($request->mot_de_passe==null)){
+            $input['mot_de_passe'] = Hash::make($input['mot_de_passe']);
+        }
         $gestionnaire->update($input);
         return $this->handleResponse(new GestionnaireResource($gestionnaire), 'gestionnaire modifié avec succes');
     }
 
-    public function destroy(Gestionnaire $gestionnaire){
+    public function destroy($id) {
+        $gestionnaire = Gestionnaire::find($id);
+        if (is_null($gestionnaire)) {
+            return $this->handleError('gestionnaire n\'existe pas!');
+        }
+        else{
+        unlink(public_path('storage\images\gestionnaire\\').$gestionnaire->photo );
         $gestionnaire->delete();
-        return $this->handleResponse(new GestionnaireResource($gestionnaire), 'gestionnaire supprimé!');
+            return $this->handleResponse(new GestionnaireResource($gestionnaire), 'gestionnaire supprimé!');
+        }
     }
+
+
+
+
+
 
     public function hdelete( $id) {
         $gestionnaire = Gestionnaire::withTrashed()->where('id' ,  $id )->first();
@@ -61,15 +77,13 @@ class GestionnaireController extends BaseController{
         return $this->handleResponse(new GestionnaireResource($gestionnaire), 'gestionnaire supprimé avec retour!');
     }
 
-    public function restoreAll()
-    {
+    public function restoreAll(){
         $gestionnaire= Gestionnaire::onlyTrashed()->restore();
 
         return $this->handleResponse(GestionnaireResource::collection($gestionnaire), 'tous gestionnaires trashed');
     }
 
-    public function trashedGestionnaire()
-    {
+    public function trashedGestionnaire(){
         $gestionnaire = Gestionnaire::withTrashed()->first();
         return $this->handleResponse(GestionnaireResource::collection($gestionnaire), 'affichage des gestionnaires');
     }
@@ -77,13 +91,7 @@ class GestionnaireController extends BaseController{
 
 
 
-
-
-
-
-
 /*
-
     public function storeGestionnaire(Request $request){
         $nom=$request->nom;
         $prenom=$request->prenom;
@@ -137,8 +145,8 @@ class GestionnaireController extends BaseController{
         return back()->with('success_delete','gestionnaire record has been  delete');
     }
     public function autocomplete(Request $request){
-        $datas=Gestionnaire::select('name')
-                        ->where('name','LIKE',"%{$request->terms}%")
+        $datas=Gestionnaire::select('nom')
+                        ->where('nom','LIKE',"%{$request->terms}%")
                         ->get();
         return response()->json($datas);
     }

@@ -8,7 +8,7 @@ class Zone_depotFactory extends Factory{
             'longitude'=> $this->faker->longitude($min = -180, $max = 180),
             'latitude'=> $this->faker->latitude($min = -90, $max = 90),
             'quantite_depot_maximale'=> $this->faker->randomNumber(5,true),
-            'quantite_depot_actuelle_plastique'=> $this->faker->randomNumber(6,true),
+            'quantite_depot_actuelle_plastique'=> $this->faker->randomNumber(5,true),
             'quantite_depot_actuelle_papier'=> $this->faker->randomNumber(5,true),
             'quantite_depot_actuelle_composte'=> $this->faker->randomNumber(5,true),
             'quantite_depot_actuelle_canette'=> $this->faker->randomNumber(5,true),

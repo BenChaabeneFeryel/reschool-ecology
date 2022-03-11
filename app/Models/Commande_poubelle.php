@@ -3,8 +3,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class Commande_poubelle extends Model
-{
+class Commande_poubelle extends Model{
     use HasFactory, SoftDeletes;
       protected $fillable = [
         'id_responsable_etablissement',
