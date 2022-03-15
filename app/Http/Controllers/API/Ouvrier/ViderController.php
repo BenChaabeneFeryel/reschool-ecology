@@ -8,7 +8,7 @@ use App\Models\Depot;
 use App\Models\Zone_depot;
 
 class ViderController extends BaseController{
-    public function ViderPoubelle($id_poubelle , $id_ouvrier){
+    public function ViderPoubelle($id_ouvrier , $id_poubelle){
         $poubelle = Poubelle::find($id_poubelle);
 
         $capactite=$poubelle->capacite_poubelle;
@@ -53,7 +53,6 @@ class ViderController extends BaseController{
     public function ViderCamion( $id_depot){
         // $ouvrier = Ouvrier::find($id_ouvrier);
         // $id_camion = $ouvrier->id_camion;
-
         $depot = Depot::find($id_depot);
         $id_zone_depot = $depot->id_zone_depot;
         $id_camion =$depot->id_camion;

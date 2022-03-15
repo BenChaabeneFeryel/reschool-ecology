@@ -6,15 +6,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Mecanicien>
  */
-class MecanicienFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
+class MecanicienFactory extends Factory{
+    public function definition(){
         return [
             'nom'=> $this->faker->firstName,
             'prenom'=> $this->faker->lastName,

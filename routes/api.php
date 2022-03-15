@@ -29,8 +29,11 @@ use App\Http\Controllers\API\TransportDechet\DepotController;
 use App\Http\Controllers\API\TransportDechet\Zone_depotController;
 
 
-use App\Http\Controllers\API\Operation\ViderController;
+use App\Http\Controllers\API\Ouvrier\ViderController;
 use App\Http\Controllers\API\Dashboard\CompteurController;
+use App\Http\Controllers\API\Ouvrier\TriageController;
+use App\Http\Controllers\API\Ouvrier\SommeDechetController;
+
 
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();*/
@@ -107,17 +110,19 @@ use App\Http\Controllers\API\Dashboard\CompteurController;
 
 
 
-
-
  /** -------------------------------------------Ouvrier -----------------------------------------*/
 
-
         Route::get('/viderPoubelle/{ouvrier}/{poubelle}', [ViderController::class, 'ViderPoubelle']);
-
         Route::get('/viderCamion/{depot}', [ViderController::class, 'ViderCamion']);
-
+        Route::get('/etablissement-zonetravail/{id_zone_travail}', [TriageController::class, 'EtablissementParZoneEtablissement']);
 
 /** -------------------------------------------Dashboard -----------------------------------------*/
         Route::get('/dasboard', [CompteurController::class, 'dashbordValeur']);
+        Route::get('/somme-total-dechet-zone-depot', [SommeDechetController::class, 'SommeDechetZoneDepot']);
+        Route::get('/somme-total-dechet-zone-travail', [SommeDechetController::class, 'SommeDechetZoneTravail']);
+        Route::get('/somme-total-dechet-etablissement/{id_zone_travail}', [SommeDechetController::class, 'SommeDechetBlocEtablissement']);
+
+
+        Route::get('/trierPoubelle', [SommeDechetController::class, 'trierPoubelle']);
 
 

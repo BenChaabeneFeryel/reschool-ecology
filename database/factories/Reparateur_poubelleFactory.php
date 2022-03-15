@@ -7,15 +7,8 @@ use Illuminate\Support\Facades\Hash;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Reparateur_poubelle>
  */
-class Reparateur_poubelleFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition()
-    {
+class Reparateur_poubelleFactory extends Factory{
+    public function definition(){
         return [
             'nom'=> $this->faker->firstName,
             'prenom'=> $this->faker->lastName,

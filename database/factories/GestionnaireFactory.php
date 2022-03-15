@@ -5,13 +5,8 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Gestionnaire>
- */
-class GestionnaireFactory extends Factory
-{
-    public function definition()
-    {
+class GestionnaireFactory extends Factory{
+    public function definition(){
         return [
             'nom'=> $this->faker->firstName,
             'prenom'=> $this->faker->lastName,

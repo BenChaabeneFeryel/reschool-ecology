@@ -8,34 +8,34 @@ use App\Models\{ User, Gestionnaire,Fournisseur,Client_dechet,Mecanicien,Reparat
 
 class DatabaseSeeder extends Seeder{
     public function run(){
-        User::factory(5)->create();
-        Gestionnaire::factory(5)->create();
-        Fournisseur::factory(5)->create();
-        Client_dechet::factory(5)->create();
-        Mecanicien::factory(5)->create();
-        Reparateur_poubelle::factory(5)->create();
-        Zone_travail::factory(5)->create();
+        User::factory(1)->create();
+        Gestionnaire::factory(1)->create();
+        Fournisseur::factory(1)->create();
+        Client_dechet::factory(1)->create();
+        Mecanicien::factory(1)->create();
+        Reparateur_poubelle::factory(1)->create();
+        Zone_travail::factory(1)->create();
         Responsable_etablissement::factory(1)->create();
         Etablissement::factory(1)->create();
-        Camion::factory(5)->create();
-        Ouvrier::factory(5)->create();
-        Bloc_poubelle::factory(5)->create();
-        Poubelle::factory(5)->create();
-        Reparation_camion::factory(5)->create();
-        Reparation_poubelle::factory(5)->create();
-        Materiau_primaire::factory(5)->create();
+        Camion::factory(1)->create();
+        Ouvrier::factory(2)->create();
+        Bloc_poubelle::factory(1)->create();
+        Poubelle::factory(4)->create();
+        Reparation_camion::factory(1)->create();
+        Reparation_poubelle::factory(1)->create();
+        Materiau_primaire::factory(1)->create();
 
-        Stock_poubelle::factory(5)->create();
-        Zone_depot::factory(5)->create();
+        Stock_poubelle::factory(1)->create();
+        Zone_depot::factory(1)->create();
 
-        Dechet::factory(5)->create();
-        Depot::factory(5)->create();
+        Dechet::factory(1)->create();
+        Depot::factory(1)->create();
 
-        Commande_dechet::factory(5)->create();
-        Commande_poubelle::factory(5)->create();
+        Commande_dechet::factory(1)->create();
+        Commande_poubelle::factory(1)->create();
 
-        Detail_commande_dechet::factory(5)->create();
-        Detail_commande_poubelle::factory(5)->create();
+        Detail_commande_dechet::factory(1)->create();
+        Detail_commande_poubelle::factory(1)->create();
 
 
 /*    Etablissement::factory()
