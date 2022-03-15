@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\Ouvrier;
+namespace App\Http\Controllers\API\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Bloc_poubelle;

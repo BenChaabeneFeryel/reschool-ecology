@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API\Ouvrier;
+namespace App\Http\Controllers\API\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Etablissement;
@@ -13,6 +13,5 @@ class TriageController extends Controller
         //$dechet_plastique = Etablissement::orderBy('id', 'DESC')->get();
         //$zone_travail = Zone_travail::find($id_zone_travail);
         return Etablissement::where('id_zone_travail',$id_zone_travail)->get();
-
     }
 }

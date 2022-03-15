@@ -15,7 +15,6 @@ use App\Models\Ouvrier;
 use App\Models\Poubelle;
 use App\Models\Stock_poubelle;
 use App\Models\Zone_travail;
-
 class CompteurController extends Controller{
     public function dashbordValeur(){
         $nbr_zone_travail= Zone_travail::all()->count();
@@ -55,6 +54,4 @@ class CompteurController extends Controller{
         ];
         return response()->json($myArray);
     }
-
-
 }

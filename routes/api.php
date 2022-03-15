@@ -114,7 +114,10 @@ use App\Http\Controllers\API\Ouvrier\SommeDechetController;
 
         Route::get('/viderPoubelle/{ouvrier}/{poubelle}', [ViderController::class, 'ViderPoubelle']);
         Route::get('/viderCamion/{depot}', [ViderController::class, 'ViderCamion']);
-        Route::get('/etablissement-zonetravail/{id_zone_travail}', [TriageController::class, 'EtablissementParZoneEtablissement']);
+
+ /** -------------------------------------------trier -----------------------------------------*/
+
+        Route::get('/trier-etablissement-zonetravail/{id_zone_travail}', [TriageController::class, 'TrierEtablissementParZoneEtablissement']);
 
 /** -------------------------------------------Dashboard -----------------------------------------*/
         Route::get('/dasboard', [CompteurController::class, 'dashbordValeur']);
