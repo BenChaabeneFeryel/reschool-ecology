@@ -120,7 +120,7 @@ use App\Http\Controllers\API\Ouvrier\SommeDechetController;
         Route::get('/trier-etablissement-zonetravail/{id_zone_travail}', [TriageController::class, 'TrierEtablissementParZoneEtablissement']);
 
 /** -------------------------------------------Dashboard -----------------------------------------*/
-        Route::get('/dasboard', [CompteurController::class, 'dashbordValeur']);
+        Route::get('/dashboard', [CompteurController::class, 'dashbordValeur']);
         Route::get('/somme-total-dechet-zone-depot', [SommeDechetController::class, 'SommeDechetZoneDepot']);
         Route::get('/somme-total-dechet-zone-travail', [SommeDechetController::class, 'SommeDechetZoneTravail']);
         Route::get('/somme-total-dechet-etablissement/{id_zone_travail}', [SommeDechetController::class, 'SommeDechetBlocEtablissement']);
